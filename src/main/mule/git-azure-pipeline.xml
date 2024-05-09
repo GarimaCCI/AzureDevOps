@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="git-azure-pipeline-flow" doc:id="d8c90d2c-70df-4baa-9b8e-476302979edc" >
+		<http:listener doc:name="Listener" doc:id="d063dae1-8cea-48b8-a091-0888c2e9d8b0" config-ref="http-listener-configuration" path="/azure"/>
+		<logger level="INFO" doc:name="START" doc:id="046b40f6-cdb5-4969-97f3-fbc367a5422b" message="Flow has Started"/>
+		<ee:transform doc:name="output Payload" doc:id="510a7ce0-43db-4622-bf78-aaf3fd0d7c31" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"The Application is successfully deployed to cloudhub using Azure DevOps"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="END" doc:id="ea9d7fe5-c3da-420a-b924-e02a02b6944d" message="#[payload]"/>
+	</flow>
+</mule>
