@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
-"The Application is successfully deployed to cloudhub using Azure DevOps"]]></ee:set-payload>
+"The Application is successfully deployed to cloudhub using Azure DevOps pipeline"]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 		<logger level="INFO" doc:name="END" doc:id="ea9d7fe5-c3da-420a-b924-e02a02b6944d" message="#[payload]"/>
